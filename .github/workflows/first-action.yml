@@ -1,0 +1,12 @@
+name: My first Workflow
+on: workflow_dispatch
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print greeting
+        run: echo "My friend"
+      - name: Print multi line
+        run: |
+           echo "Bogdan",
+           echo " is awesome"
