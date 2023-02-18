@@ -66,3 +66,11 @@ jobs:
         run: ls -la
       - name: Output file name
         run: echo "${{ toJSON(needs) }}"
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      if: failure()
+      - name: Output informations
+        run: |
+          echo 'Something went wrong'
+          echo ${{ toJSON(github) }}
