@@ -68,8 +68,8 @@ jobs:
         run: echo "${{ toJSON(needs) }}"
   report:
     runs-on: ubuntu-latest
+    if: failure()
     steps:
-      if: failure()
       - name: Output informations
         run: |
           echo 'Something went wrong'
