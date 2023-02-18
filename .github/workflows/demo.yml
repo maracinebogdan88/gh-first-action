@@ -47,7 +47,7 @@ jobs:
     strategy:
       matrix:
         node-version: [ 14, 16, 18 ]
-        os: [ ubuntu-latest, windows-latest ]
+        os: [ ubuntu-latest ]
     needs: test
     runs-on: ${{ matrix.os }}
     outputs:
