@@ -84,7 +84,11 @@ jobs:
     runs-on: ubuntu-latest
     if: failure()
     steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: test-report
       - name: Output informations
         run: |
           echo "Something went wrong"
-          echo "${{ toJSON(github) }}"
+          cat test.json
