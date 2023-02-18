@@ -72,5 +72,5 @@ jobs:
     steps:
       - name: Output informations
         run: |
-          echo 'Something went wrong'
-          echo ${{ toJSON(github) }}
+          echo "Something went wrong"
+          echo "${{ toJSON(github) }}"
