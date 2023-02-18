@@ -74,8 +74,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     uses: ./.github/workflows/reusable-workflow.yml
-    with:
-      artifacts-folder-name: app-dist-files
+      with:
+        artifacts-folder-name: app-dist-files
   report:
     needs: [lint, deploy]
     runs-on: ubuntu-latest
