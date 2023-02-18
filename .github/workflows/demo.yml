@@ -44,21 +44,13 @@ jobs:
           name: test-report
           path: test.json
   build:
-    strategy:
-      matrix:
-        node-version: [ 14, 16, 18 ]
-        os: [ ubuntu-latest ]
     needs: test
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     outputs:
       script-file: ${{ steps.publish.outputs.script-file }}
     steps:
       - name: Get code
         uses: actions/checkout@v3
-      - name: Install Nodejs
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
       - name: Cache node modules
         id: node-modules-cache
         uses: actions/cache@v3
@@ -81,15 +73,9 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    steps:
-      - name: Download artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: app-dist-files
-      - name: Output contents
-        run: ls -la
-      - name: Output file name
-        run: echo "${{ toJSON(needs) }}"
+    uses: ./.github/workflows/reusable-workflow.yml
+    with:
+      artifacts-folder-name: app-dist-files
   report:
     needs: [lint, deploy]
     runs-on: ubuntu-latest

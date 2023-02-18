@@ -1,0 +1,21 @@
+name: Reusable workflow
+on: workflow_call
+  inputs:
+    artifacts-folder-name:
+      description: 'The dist folder name'
+      default: dist
+      required: false
+      type: string
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ inputs.artifacts-folder-name }}
+      - name: Output contents
+        run: ls -la
+      - name: Output file name
+        run: echo "${{ toJSON(needs) }}"
