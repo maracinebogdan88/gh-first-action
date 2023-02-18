@@ -67,6 +67,7 @@ jobs:
       - name: Output file name
         run: echo "${{ toJSON(needs) }}"
   report:
+    needs: [lint, deploy]
     runs-on: ubuntu-latest
     if: failure()
     steps:
