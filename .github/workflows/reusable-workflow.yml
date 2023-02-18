@@ -1,12 +1,12 @@
 name: Reusable workflow
-on: workflow_call
-  inputs:
-    artifacts-folder-name:
-      description: 'The dist folder name'
-      default: dist
-      required: false
-      type: string
-
+on:
+  workflow_call:
+    inputs:
+      artifacts-folder-name:
+        description: 'The dist folder name'
+        default: dist
+        required: false
+        type: string
 jobs:
   deploy:
     runs-on: ubuntu-latest
