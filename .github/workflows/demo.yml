@@ -25,9 +25,9 @@ jobs:
       - name: Upload test report
         if: ${{ failure() && steps.run-tests.outcome == 'failure' }}
         uses: actions/upload-artifact@v3
-          with:
-            name: test-report
-            path: test.json
+        with:
+          name: test-report
+          path: test.json
   build:
     needs: test
     runs-on: ubuntu-latest
